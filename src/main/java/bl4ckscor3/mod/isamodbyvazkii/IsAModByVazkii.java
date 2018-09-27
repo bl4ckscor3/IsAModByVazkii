@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid=IsAModByVazkii.MOD_ID, name="...is a mod by Vazkii", version="v1.0.1", acceptedMinecraftVersions="[1.12]")
+@Mod(modid=IsAModByVazkii.MOD_ID, name="...is a mod by Vazkii", version="v1.1", acceptedMinecraftVersions="[1.12]")
 @EventBusSubscriber
 public class IsAModByVazkii
 {
