@@ -1,9 +1,5 @@
 package bl4ckscor3.mod.isamodbyvazkii;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +24,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class IsAModByVazkii
 {
 	protected static final String MOD_ID = "isamodbyvazkii";
-	private static final HashMap<String,String> MODS = new HashMap<String,String>();
-	private static final HashMap<String,String> CACHE = new HashMap<String,String>();
+	private static final HashMap<String,String> MODS = new HashMap<>();
+	private static final HashMap<String,String> CACHE = new HashMap<>();
 	private static final String BLOCK = "isamodbyvazkii:block";
 	private static final String ITEM = "isamodbyvazkii:item";
 	private static final Logger LOGGER = Logger.getLogger(MOD_ID);
