@@ -3,7 +3,6 @@ package bl4ckscor3.mod.isamodbyvazkii;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -28,24 +27,18 @@ public class IsAModByVazkii
 	private static final HashMap<String,String> CACHE = new HashMap<>();
 	private static final String BLOCK = "isamodbyvazkii:block";
 	private static final String ITEM = "isamodbyvazkii:item";
-	private static final Logger LOGGER = Logger.getLogger(MOD_ID);
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-
 		Map<String,ModContainer> modList = Loader.instance().getIndexedModList();
 
 		for(String modid : modList.keySet())
 		{
-
 			String authorList = modList.get(modid).getMetadata().getAuthorList();
 
 			if(authorList.toLowerCase().contains("vazkii"))
-			{
 				MODS.put(modid, modList.get(modid).getName());
-			}
-
 		}
 	}
 
