@@ -37,19 +37,19 @@ public class IsAModByVazkii
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		try(BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/bl4ckscor3/IsAModByVazkii/master/modlist.txt").openStream())))
-		{
-			String line;
-			Map<String,ModContainer> modList = Loader.instance().getIndexedModList();
 
-			while((line = reader.readLine()) != null)
-			{
-				MODS.put(line, Loader.isModLoaded(line) ? modList.get(line).getName() : "");
-			}
-		}
-		catch(IOException e)
+		Map<String,ModContainer> modList = Loader.instance().getIndexedModList();
+
+		for(String modid : modList.keySet())
 		{
-			LOGGER.warning("Failed to download Vazkii's mod list. Check your internet connection.");
+
+			String authorList = modList.get(modid).getMetadata().getAuthorList();
+
+			if(authorList.toLowerCase().contains("vazkii"))
+			{
+				MODS.put(modid, modList.get(modid).getName());
+			}
+
 		}
 	}
 
