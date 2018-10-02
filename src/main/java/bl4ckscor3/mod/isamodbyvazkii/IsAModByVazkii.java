@@ -10,13 +10,12 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 @Mod(modid=IsAModByVazkii.MOD_ID, name="...is a mod by Vazkii", version="v1.1.1", acceptedMinecraftVersions="[1.12]")
 @EventBusSubscriber
@@ -25,20 +24,31 @@ public class IsAModByVazkii
 	protected static final String MOD_ID = "isamodbyvazkii";
 	private static final HashMap<String,String> MODS = new HashMap<>();
 	private static final HashMap<String,String> CACHE = new HashMap<>();
+	public static final String MOD = "isamodbyvazkii:mod";
 	private static final String BLOCK = "isamodbyvazkii:block";
 	private static final String ITEM = "isamodbyvazkii:item";
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		Map<String,ModContainer> modList = Loader.instance().getIndexedModList();
+		Map<String, ModContainer> modList = Loader.instance().getIndexedModList();
 
 		for(String modid : modList.keySet())
 		{
 			String authorList = modList.get(modid).getMetadata().getAuthorList();
 
-			if(authorList.toLowerCase().contains("vazkii"))
+			if(authorList.toLowerCase().contains("vazkii")) {
 				MODS.put(modid, modList.get(modid).getName());
+			}
+
+			if(modList.get(modid) instanceof FMLModContainer) {
+				if(modList.get(modid).getMetadata().getAuthorList().toLowerCase().contains("vazkii")) {
+					FMLModContainer container = (FMLModContainer) modList.get(modid);
+					ModMetadata metadata = ReflectionHelper.getPrivateValue(FMLModContainer.class, container, "modMetadata");
+					metadata.name = I18n.format(MOD, metadata.name);
+					ReflectionHelper.setPrivateValue(FMLModContainer.class, container, metadata, "modMetadata");
+				}
+			}
 		}
 	}
 
@@ -80,7 +90,7 @@ public class IsAModByVazkii
 			{
 				if(TextFormatting.getTextWithoutFormattingCodes(tooltips.get(i)).equals(modName))
 				{
-					tooltips.set(i, I18n.format("isamodbyvazkii:mod", tooltips.get(i)));
+					tooltips.set(i, I18n.format(MOD, tooltips.get(i)));
 					return;
 				}
 			}
