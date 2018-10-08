@@ -1,3 +1,8 @@
+# v1.2
+
+- Mods' names are changed in the mod list (SkyHawk)
+- Mods' names are changed in meta, no longer tooltip only (SkyHawk)
+
 # v1.1.1
 
 - Affected mods are now determined by the mod's author list instead of a hardcoded list (AmazigJj)
