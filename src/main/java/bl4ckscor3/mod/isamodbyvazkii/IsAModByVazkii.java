@@ -41,11 +41,12 @@ public class IsAModByVazkii
 				MODS.put(modid, modList.get(modid).getName());
 
 			if(modList.get(modid) instanceof FMLModContainer) 
-      {
+			{
 				if(authorList.toLowerCase().contains("vazkii")) 
-        {
+				{
 					FMLModContainer container = (FMLModContainer) modList.get(modid);
 					ModMetadata metadata = ReflectionHelper.getPrivateValue(FMLModContainer.class, container, "modMetadata");
+					
 					metadata.name = I18n.format(MOD, metadata.name);
 					ReflectionHelper.setPrivateValue(FMLModContainer.class, container, metadata, "modMetadata");
 				}
