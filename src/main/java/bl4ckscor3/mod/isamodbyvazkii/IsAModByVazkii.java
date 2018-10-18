@@ -37,12 +37,13 @@ public class IsAModByVazkii
 		{
 			String authorList = modList.get(modid).getMetadata().getAuthorList();
 
-			if(authorList.toLowerCase().contains("vazkii")) {
+			if(authorList.toLowerCase().contains("vazkii")) 
 				MODS.put(modid, modList.get(modid).getName());
-			}
 
-			if(modList.get(modid) instanceof FMLModContainer) {
-				if(modList.get(modid).getMetadata().getAuthorList().toLowerCase().contains("vazkii")) {
+			if(modList.get(modid) instanceof FMLModContainer) 
+      {
+				if(authorList.toLowerCase().contains("vazkii")) 
+        {
 					FMLModContainer container = (FMLModContainer) modList.get(modid);
 					ModMetadata metadata = ReflectionHelper.getPrivateValue(FMLModContainer.class, container, "modMetadata");
 					metadata.name = I18n.format(MOD, metadata.name);
@@ -52,7 +53,7 @@ public class IsAModByVazkii
 		}
 	}
 
-	@SubscribeEvent
+  @SubscribeEvent
 	public static void onItemTooltip(ItemTooltipEvent event)
 	{
 		if(event.getToolTip().size() < 1)
