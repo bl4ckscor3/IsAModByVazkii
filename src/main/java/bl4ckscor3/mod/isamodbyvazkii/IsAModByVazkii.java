@@ -37,6 +37,9 @@ public class IsAModByVazkii
 		{
 			String authorList = modList.get(modid).getMetadata().getAuthorList();
 
+			if(authorList.toLowerCase().contains("vazkii"))
+				MODS.put(modid, modList.get(modid).getName());
+
 			if(modList.get(modid) instanceof FMLModContainer) 
 			{
 				if(authorList.toLowerCase().contains("vazkii")) 
