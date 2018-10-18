@@ -8,11 +8,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.FMLModContainer;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
@@ -40,9 +43,9 @@ public class IsAModByVazkii
 			if(authorList.toLowerCase().contains("vazkii"))
 				MODS.put(modid, modList.get(modid).getName());
 
-			if(modList.get(modid) instanceof FMLModContainer) 
+			if(modList.get(modid) instanceof FMLModContainer)
 			{
-				if(authorList.toLowerCase().contains("vazkii")) 
+				if(authorList.toLowerCase().contains("vazkii"))
 				{
 					FMLModContainer container = (FMLModContainer) modList.get(modid);
 					ModMetadata metadata = ReflectionHelper.getPrivateValue(FMLModContainer.class, container, "modMetadata");
@@ -54,7 +57,7 @@ public class IsAModByVazkii
 		}
 	}
 
-  @SubscribeEvent
+	@SubscribeEvent
 	public static void onItemTooltip(ItemTooltipEvent event)
 	{
 		if(event.getToolTip().size() < 1)
@@ -67,7 +70,6 @@ public class IsAModByVazkii
 		if(!stack.isEmpty() && MODS.containsKey(stack.getItem().getRegistryName().getNamespace()))
 		{
 			String newName;
-			String modName = MODS.get(stack.getItem().getRegistryName().getNamespace());
 
 			if(!CACHE.containsKey(name))
 			{
