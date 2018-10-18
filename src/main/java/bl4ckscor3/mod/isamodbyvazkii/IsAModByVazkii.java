@@ -37,16 +37,13 @@ public class IsAModByVazkii
 		{
 			String authorList = modList.get(modid).getMetadata().getAuthorList();
 
-			if(authorList.toLowerCase().contains("vazkii")) 
-				MODS.put(modid, modList.get(modid).getName());
-
 			if(modList.get(modid) instanceof FMLModContainer) 
 			{
 				if(authorList.toLowerCase().contains("vazkii")) 
 				{
 					FMLModContainer container = (FMLModContainer) modList.get(modid);
 					ModMetadata metadata = ReflectionHelper.getPrivateValue(FMLModContainer.class, container, "modMetadata");
-					
+
 					metadata.name = I18n.format(MOD, metadata.name);
 					ReflectionHelper.setPrivateValue(FMLModContainer.class, container, metadata, "modMetadata");
 				}
@@ -87,15 +84,6 @@ public class IsAModByVazkii
 				newName = CACHE.get(name);
 
 			tooltips.set(0, newName);
-
-			for(int i = 0; i < tooltips.size(); i++)
-			{
-				if(TextFormatting.getTextWithoutFormattingCodes(tooltips.get(i)).equals(modName))
-				{
-					tooltips.set(i, I18n.format(MOD, tooltips.get(i)));
-					return;
-				}
-			}
 		}
 	}
 }
