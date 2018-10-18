@@ -4,3 +4,6 @@
 /.gradle
 /.project
 /.settings
+/.idea
+/run
+/out
